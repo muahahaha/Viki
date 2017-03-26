@@ -3,7 +3,7 @@ import wikipedia as wik
 import argparse
 
 
-def print_wiki_search(*args):
+def get_wiki_search(*args):
     try:
         result = wik.search(*args)
         # print result
@@ -12,7 +12,7 @@ def print_wiki_search(*args):
         print "args don't make sense"
 
 
-def print_summary(*args):
+def get_summary(*args):
     try:
         result =  wik.summary(*args)
         return result
@@ -21,8 +21,10 @@ def print_summary(*args):
 
 
 def pretty_print(*args):
+    print '\n'
     for i in range(len(args)):
         print args[i]
+    print '\n'
 
 
 def get_parser():
@@ -44,6 +46,16 @@ def get_parser():
     return parser
 
 
+def get_page(*args):
+    request = wik.page(*args)
+    title = request.title
+    content = request.content
+    output = '\n' \
+        + title + '\n' \
+        + content + '\n'
+    return content
+
+
 def command_line_runner():
     parser = get_parser()
     args = vars(parser.parse_args())
@@ -51,10 +63,10 @@ def command_line_runner():
         parser.print_help()
         return
     if args['get_summary']:
-        print print_summary(args['query'])
+        print get_summary(args['query'])
         return
     else:
-        pretty_print(*print_wiki_search(args['query']))
+        pretty_print(*get_wiki_search(args['query']))
 
 
 if __name__=='__main__':

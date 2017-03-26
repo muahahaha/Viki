@@ -1,0 +1,5 @@
+
+# This file is a list of ways how to search and fetch data from Wikipedia
+
+
+

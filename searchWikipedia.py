@@ -12,6 +12,14 @@ def print_wiki_search(*args):
         print "args don't make sense"
 
 
+def print_summary(*args):
+    try:
+        result =  wik.summary(*args)
+        return result
+    except ValueError:
+        print "args don't make sense"
+
+
 def pretty_print(*args):
     for i in range(len(args)):
         print args[i]
@@ -27,12 +35,12 @@ def get_parser():
                         help='The words you want to search Wikipedia returns\
                         simmular topics'
                         )
-    # parser.add_argument('-s', '--summary',
-    #                     action='store_true',
-    #                     default=False,
-    #                     dest='get_summary',
-    #                     help='Print the summary of your query'
-    #                     )
+    parser.add_argument('-s', '--summary',
+                        action='store_true',
+                        default=False,
+                        dest='get_summary',
+                        help='Print the summary of your query'
+                        )
     return parser
 
 
@@ -41,7 +49,9 @@ def command_line_runner():
     args = vars(parser.parse_args())
     if not args['query']:
         parser.print_help()
-        # print parser.get_summary
+        return
+    if args['get_summary']:
+        print print_summary(args['query'])
         return
     else:
         pretty_print(*print_wiki_search(args['query']))

@@ -6,15 +6,15 @@ import argparse
 def print_wiki_search(*args):
     try:
         result = wik.search(*args)
-        # print(result)
+        # print result
         return result
     except ValueError:
-        print("args don't make sense")
+        print "args don't make sense"
 
 
 def pretty_print(*args):
     for i in range(len(args)):
-        print(args[i])
+        print args[i]
 
 
 def get_parser():
@@ -41,7 +41,7 @@ def command_line_runner():
     args = vars(parser.parse_args())
     if not args['query']:
         parser.print_help()
-        # print(parser.get_summary)
+        # print parser.get_summary
         return
     else:
         pretty_print(*print_wiki_search(args['query']))

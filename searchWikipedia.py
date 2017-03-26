@@ -34,13 +34,13 @@ def get_parser():
                         nargs='*',
                         help='The words you want to search Wikipedia returns\
                         simmular topics'
-                        )
+    )
     parser.add_argument('-s', '--summary',
                         action='store_true',
                         default=False,
                         dest='get_summary',
                         help='Print the summary of your query'
-                        )
+    )
     return parser
 
 
